@@ -1,0 +1,178 @@
+MainActivity.java
+package com.example.calculator;
+
+
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText t1, t2;
+    Button b1, b2, b3, b4, b5;
+    TextView tv1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        t1 = findViewById(R.id.et1);
+        t2 = findViewById(R.id.et2);
+        b1 = findViewById(R.id.btnAdd);
+        b2 = findViewById(R.id.btnSub);
+        b3 = findViewById(R.id.btnMult);
+        b4 = findViewById(R.id.btnDiv);
+        b5 = findViewById(R.id.btnClear);
+        tv1 = findViewById(R.id.tv1);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                performOperation('+');
+            }
+        });
+
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                performOperation('-');
+            }
+        });
+
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                performOperation('*');
+            }
+        });
+
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                performOperation('/');
+            }
+        });
+
+        b5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t1.setText("");
+                t2.setText("");
+                tv1.setText("Output");
+            }
+        });
+    }
+
+    private void performOperation(char operator) {
+        String s1 = t1.getText().toString().trim();
+        String s2 = t2.getText().toString().trim();
+
+        if (s1.isEmpty() || s2.isEmpty()) {
+            Toast.makeText(this, "Please enter both numbers", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            int n1 = Integer.parseInt(s1);
+            int n2 = Integer.parseInt(s2);
+            int result = 0;
+
+            switch (operator) {
+                case '+':
+                    result = n1 + n2;
+                    tv1.setText("Addition = " + result);
+                    break;
+                case '-':
+                    result = n1 - n2;
+                    tv1.setText("Subtraction = " + result);
+                    break;
+                case '*':
+                    result = n1 * n2;
+                    tv1.setText("Multiplication = " + result);
+                    break;
+                case '/':
+                    if (n2 == 0) {
+                        Toast.makeText(this, "Cannot divide by zero", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    result = n1 / n2;
+                    tv1.setText("Division = " + result);
+                    break;
+            }
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Invalid input! Enter numbers only.", Toast.LENGTH_SHORT).show();
+        }
+    }
+}
+
+
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/et1"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:hint="Enter first number"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/et2"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:hint="Enter second number"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Addition" />
+
+    <Button
+        android:id="@+id/btnSub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Subtraction" />
+
+    <Button
+        android:id="@+id/btnMult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Multiplication" />
+
+    <Button
+        android:id="@+id/btnDiv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Division" />
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Clear" />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Output"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingTop="10dp" />
+
+</LinearLayout>
