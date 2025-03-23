@@ -1,0 +1,93 @@
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/website"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Website URL"
+        android:padding="12dp"
+        android:inputType="textUri"
+        android:background="@android:drawable/edit_text"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp" />
+
+    <Button
+        android:id="@+id/runWebsite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#00BCD4"
+        android:padding="10dp"
+        android:text="Open Website"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/website" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+MainActivity.java
+
+package com.example.practical8;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import java.util.regex.Pattern;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button runWebsite = findViewById(R.id.runWebsite);
+        EditText website = findViewById(R.id.website);
+
+        runWebsite.setOnClickListener(view -> {
+            String strURL = website.getText().toString().trim();
+
+            if (strURL.isEmpty()) {
+                Toast.makeText(MainActivity.this, "Please enter a URL", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Regular expression to check if it's a valid URL
+            String urlPattern = "^(http://|https://)?[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(/\\S*)?$";
+            if (!Pattern.matches(urlPattern, strURL)) {
+                Toast.makeText(MainActivity.this, "Invalid URL", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // If URL doesn't start with http:// or https://, add https://
+            if (!strURL.startsWith("http://") && !strURL.startsWith("https://")) {
+                strURL = "https://" + strURL;
+            }
+
+            // Open website in browser
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(strURL));
+            startActivity(intent);
+        });
+    }
+}
