@@ -1,3 +1,7 @@
+Practical 8
+Create an android application that opens the website www.google.com in
+the browser on the click of a button using intents.
+
 activity_main.xml
 
 <?xml version="1.0" encoding="utf-8"?>
