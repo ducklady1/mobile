@@ -1,4 +1,8 @@
-go to res folder -> right click -> create new Android Resource Directory -> name : raw and -> Resource Type : raw and ok -> copy paste the video.mp4 in res/raw
+
+go to res folder -> right click -> createPractical 10
+Create the media API in android to play a video file.
+
+ new Android Resource Directory -> name : raw and -> Resource Type : raw and ok -> copy paste the video.mp4 in res/raw
 
 activity_main.xml
 <?xml version="1.0" encoding="utf-8"?>
