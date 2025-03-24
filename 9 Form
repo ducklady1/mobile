@@ -1,3 +1,10 @@
+Practical 9
+Create an android application that displays a login form with text for username
+and password and button for submit and reset. On submitting, toast should be
+displayed accordingly i.e. “Correct username and password” if username and
+password match and “Incorrect username/password” if username and password
+do not match.
+
 activity_main.xml
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
