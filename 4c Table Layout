@@ -1,20 +1,28 @@
 activity_main.xml
-package com.example.prac5;
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/main"
+    android:stretchColumns="1">
 
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+    <TableRow>
 
-public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Toolbar tbar = findViewById(R.id.toolbar);
-        setSupportActionBar(tbar);
-    }
-}
+        <TextView android:layout_width="225dp"
+            android:layout_height="56dp" android:padding="3dip"
+            android:text="Row1,Col1" />
+        <TextView android:layout_height="match_parent"
+            android:gravity="right" android:padding="3dip"
+            android:text="Row1,Col2" />
+    </TableRow>
+    <TableRow>
+        <TextView android:layout_width="242dp"
+            android:layout_height="64dp" android:padding="3dip"
+            android:text="Row2,Col1" />
+        <TextView android:layout_height="match_parent"
+            android:gravity="right" android:padding="3dip"
+            android:text="Row2,Col2" />
+    </TableRow>
+</TableLayout>
 
 MainActivity.java
 package com.example.a4c;
