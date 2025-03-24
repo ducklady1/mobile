@@ -1,3 +1,8 @@
+Practical 3
+Programming Activities and fragments
+Activity Life Cycle, Activity methods, Multiple Activities, Life Cycle of
+fragments and multiple fragments.
+
 activity_main.xml
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
