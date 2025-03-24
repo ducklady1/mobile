@@ -1,3 +1,7 @@
+Practical 6
+Create an android application for the following menu items, the appropriate
+toast should appear by clicking on the item:
+
 activity_main.xml
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
