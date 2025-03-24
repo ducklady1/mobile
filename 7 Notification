@@ -1,3 +1,6 @@
+Practical 7
+Create an android application to generate notification
+
 activity_main.xml
 
 <?xml version="1.0" encoding="utf-8"?>
